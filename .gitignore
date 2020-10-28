@@ -1,0 +1,11 @@
+composer.lock
+/lib/vendor/composer/installers
+/lib/**/doc/*
+/lib/**/docs/*
+/lib/**/example/*
+/lib/**/phpunit*
+/lib/**/tests/*
+/lib/**/test/*
+/lib/**/.travis/*
+/lib/**/.travis.yml
+/lib/**/.github/*
