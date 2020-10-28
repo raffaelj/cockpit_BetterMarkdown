@@ -93,7 +93,7 @@ class Markdown extends \Lime\Helper {
         // reformat toc from ParsedownToC
         foreach ($toc as &$v) {
 
-            $v['depth'] = (int) substr($v['level'], 1, 2) - 1;
+            $v['depth'] = (int) substr($v['level'], 1, 2);
             $v['url']   = '#'.$v['id'];
 
             // replace e. g. `text` with `title` to match existing menu template
@@ -115,7 +115,7 @@ class Markdown extends \Lime\Helper {
         unset($v);
 
         // inspired by: https://stackoverflow.com/a/14963270
-        $d           = $toc[0]['depth'];
+        $d           = $toc[0]['depth'] -1;
         $tmp         = [];
         $parent      = &$tmp;
         $parents[$d] = &$parent;
