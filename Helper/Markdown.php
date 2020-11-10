@@ -90,6 +90,8 @@ class Markdown extends \Lime\Helper {
 
     public function buildTreeFromToc($toc) {
 
+        if (empty($toc)) return $toc;
+
         // reformat toc from ParsedownToC
         foreach ($toc as &$v) {
 
