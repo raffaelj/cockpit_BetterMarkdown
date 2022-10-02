@@ -1,5 +1,11 @@
 # BetterMarkdown addon for Cockpit CMS
 
+**This addon is not compatible with Cockpit CMS v2.**
+
+See also [Cockpit CMS v1 docs](https://v1.getcockpit.com/documentation), [Cockpit CMS v1 repo](https://github.com/agentejo/cockpit) and [Cockpit CMS v2 docs](https://getcockpit.com/documentation/), [Cockpit CMS v2 repo](https://github.com/Cockpit-HQ/Cockpit).
+
+---
+
 Cache, task lists and ToC support for markdown conversion with [Cockpit CMS][1]
 
 This addon replaces the current [Parsedown][2] and [ParsedownExtra][3] libraries with later versions and it adds two Parsedown extensions: [ParsedownToC][4] and [ParsedownCheckbox][5].
