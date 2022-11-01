@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInitd3d752480fffe31cf7365b83c072bda1
 {
     public static $files = array (
-        'fc4c7abbd6c2bb8c1033eafae1b4a4a9' => __DIR__ . '/..' . '/hoegh/parsedown-toc/ParsedownToc.php',
+        'e99389decfcc5142e0d0458740e7489a' => __DIR__ . '/..' . '/benjaminhoegh/parsedown-toc/ParsedownToc.php',
         '5e187b582b2b3bb26276f0085ef51bb1' => __DIR__ . '/..' . '/leblanc-simon/parsedown-checkbox/ParsedownCheckbox.php',
     );
 
@@ -39,12 +39,17 @@ class ComposerStaticInitd3d752480fffe31cf7365b83c072bda1
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitd3d752480fffe31cf7365b83c072bda1::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd3d752480fffe31cf7365b83c072bda1::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitd3d752480fffe31cf7365b83c072bda1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd3d752480fffe31cf7365b83c072bda1::$classMap;
 
         }, null, ClassLoader::class);
     }

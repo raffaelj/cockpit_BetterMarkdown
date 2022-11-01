@@ -25,8 +25,8 @@ class ParsedownToC extends DynamicParent
      *  Constants.
      * ------------------------------------------------------------------------
      */
-    const VERSION = '1.3';
-    const VERSION_PARSEDOWN_REQUIRED = '1.7';
+    const VERSION = '1.4';
+    const VERSION_PARSEDOWN_REQUIRED = '1.7.4';
     const TAG_TOC_DEFAULT = '[toc]';
     const ID_ATTRIBUTE_DEFAULT = 'toc';
 
@@ -38,6 +38,8 @@ class ParsedownToC extends DynamicParent
         'replacements' => null,
         'transliterate' => false,
         'urlencode' => false,
+        'blacklist' => [],
+        'url' => '',
     );
 
     /**
@@ -83,14 +85,22 @@ class ParsedownToC extends DynamicParent
         $Block = DynamicParent::blockHeader($Line);
 
         if (!empty($Block)) {
+
+            $text = '';
+
             // Get the text of the heading
-            if (isset($Block['element']['handler']['argument'])) {
+
+            // 1.7.4
+            if (isset($Block['element']['text'])) {
+                $text = $Block['element']['text'];
+            }
+            // 1.8.0-beta-7
+            elseif (isset($Block['element']['handler']['argument'])) {
                 $text = $Block['element']['handler']['argument'];
             }
 
             // Get the heading level. Levels are h1, h2, ..., h6
             $level = $Block['element']['name'];
-
 
             // Get the anchor of the heading to link from the ToC list
             $id = isset($Block['element']['attributes']['id']) ?
@@ -123,15 +133,23 @@ class ParsedownToC extends DynamicParent
     * @param  array $Line  Array that Parsedown detected as a block type element.
     * @return void|array   Array of Heading Block.
      */
-
     protected function blockSetextHeader($Line, array $Block = null)
     {
         // Use parent blockHeader method to process the $Line to $Block
         $Block = DynamicParent::blockSetextHeader($Line, $Block);
 
         if (!empty($Block)) {
+
+            $text = '';
+
             // Get the text of the heading
-            if (isset($Block['element']['handler']['argument'])) {
+
+            // 1.7.4
+            if (isset($Block['element']['text'])) {
+                $text = $Block['element']['text'];
+            }
+            // 1.8.0-beta-7
+            elseif (isset($Block['element']['handler']['argument'])) {
                 $text = $Block['element']['handler']['argument'];
             }
 
@@ -159,7 +177,7 @@ class ParsedownToC extends DynamicParent
             return $Block;
         }
     }
-    
+
     /**
      * Parses the given markdown string to an HTML string but it leaves the ToC
      * tag as is. It's an alias of the parent method "\DynamicParent::text()".
@@ -179,8 +197,8 @@ class ParsedownToC extends DynamicParent
     /**
      * Returns the parsed ToC.
      *
-     * @param  string $type_return  Type of the return format. "html" or "json".
-     * @return string               HTML/JSON string of ToC.
+     * @param  string $type_return  Type of the return format. "html", "json", or "array".
+     * @return string|array         HTML/JSON string, or array of ToC.
      */
     public function contentsList($type_return = 'html')
     {
@@ -196,7 +214,11 @@ class ParsedownToC extends DynamicParent
         if ('json' === strtolower($type_return)) {
             return json_encode($this->contentsListArray);
         }
-        
+
+        if ('array' === strtolower($type_return)) {
+            return $this->contentsListArray;
+        }
+
         // Forces to return ToC as "html"
         error_log(
             'Unknown return type given while parsing ToC.'
@@ -217,14 +239,11 @@ class ParsedownToC extends DynamicParent
     {
         // Make sure string is in UTF-8 and strip invalid UTF-8 characters
         $str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());
-        
+
         if($this->options['urlencode']) {
             // Check AnchorID is unique
-            $num = $this->uniqueAnchorID($str, $this->contentsListArray);
-            
-            if(!empty($num)) {
-                $str = $str.'-'.$num;
-            }
+            $str = $this->incrementAnchorId($str);
+
             return urlencode($str);
         }
 
@@ -318,14 +337,9 @@ class ParsedownToC extends DynamicParent
         $str = trim($str, $this->options['delimiter']);
 
         $str = $this->options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
-        
-        // Check AnchorID is unique
-        $num = $this->uniqueAnchorID($str, $this->contentsListArray);
-        
-        if(!empty($num)) {
-            $str = $str.'-'.$num;
-        }
-        
+
+        $str = $this->incrementAnchorId($str);
+
         return $str;
     }
 
@@ -470,7 +484,7 @@ class ParsedownToC extends DynamicParent
         $text  = $this->fetchText($Content['text']);
         $id    = $Content['id'];
         $level = (integer) trim($Content['level'], 'h');
-        $link  = "[${text}](#${id})";
+        $link  = "[${text}]({$this->options['url']}#${id})";
 
         if ($this->firstHeadLevel === 0) {
             $this->firstHeadLevel = $level;
@@ -523,7 +537,7 @@ class ParsedownToC extends DynamicParent
      * It overrides the parent method: \Parsedown::text().
      *
      * @param  string $text
-     * @return void
+     * @return string
      */
     public function text($text)
     {
@@ -545,29 +559,59 @@ class ParsedownToC extends DynamicParent
 
         return str_replace($needle, $replace, $html);
     }
-    
-    
-    
-    
+
+
+    protected $isBlacklistInitialized = false;
+    protected $anchorDuplicates = [];
+
     /**
-    * 
-    * Make sure that AnchorID is always unique by calculate duplicates
-    *
-    * @param  string $needle, array $haystack, boolean $strict
-    * @return boolean
-    */
-    protected $contentsListDuplicates = array();
-    
-    protected function uniqueAnchorID($needle, $haystack, $strict = false) {
-        foreach ($haystack as $key => $item) {
-            if (($strict ? $key === $needle : $key == $needle) || (is_array($key) && $this->uniqueAnchorID($needle, $item, $strict))) {
-                $this->contentsListDuplicates[$needle][] = 1;
-                $num = count($this->contentsListDuplicates[$needle]);
-                if ($num > 1) {
-                    return count($this->contentsListDuplicates[$needle]);    
-                }
+     * Add blacklisted ids to anchor list
+     */
+    protected function initBlacklist() {
+
+        if ($this->isBlacklistInitialized) return;
+
+        if (!empty($this->options['blacklist']) && is_array($this->options['blacklist'])) {
+
+            foreach ($this->options['blacklist'] as $v) {
+                if (is_string($v)) $this->anchorDuplicates[$v] = 0;
             }
         }
-        return null;        
+
+        $this->isBlacklistInitialized = true;
     }
+
+    /**
+     * Collect and count anchors in use to prevent duplicated ids. Return string
+     * with incremental, numeric suffix. Also init optional blacklist of ids.
+     *
+     * @param  string $str
+     * @return string
+     */
+    protected function incrementAnchorId($str) {
+
+        // add blacklist to list of used anchors
+        if (!$this->isBlacklistInitialized) $this->initBlacklist();
+
+        $this->anchorDuplicates[$str] = !isset($this->anchorDuplicates[$str]) ? 0 : ++$this->anchorDuplicates[$str];
+
+        $newStr = $str;
+
+        if ($count = $this->anchorDuplicates[$str]) {
+
+            $newStr .= "-{$count}";
+
+            // increment until conversion doesn't produce new duplicates anymore
+            if (isset($this->anchorDuplicates[$newStr])) {
+                $newStr = $this->incrementAnchorId($str);
+            }
+            else {
+                $this->anchorDuplicates[$newStr] = 0;
+            }
+
+        }
+
+        return $newStr;
+    }
+
 }

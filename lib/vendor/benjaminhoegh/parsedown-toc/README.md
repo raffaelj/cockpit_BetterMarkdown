@@ -13,7 +13,7 @@ Extension for Parsedown and ParsedownExtra
 
 - Configurable
 
-- Tested in 7.1 to 7.3
+- Tested in PHP 7.1 to 8.0
 
 - Full support for custom header ids
 
@@ -22,7 +22,7 @@ Extension for Parsedown and ParsedownExtra
 Install the  [composer package](https://packagist.org/packages/hoegh/parsedowntoc "The ParsedownToc package on packagist.org"):
 
 ```
-composer require hoegh/parsedowntoc
+composer require benjaminhoegh/parsedowntoc
 ```
 
 Or download the [latest release](https://github.com/BenjaminHoegh/parsedownToc/releases/latest "The latest release of parsedownToc") and include `Parsedown.php`
@@ -34,7 +34,7 @@ Or download the [latest release](https://github.com/BenjaminHoegh/parsedownToc/r
 // Sample Markdown with '[toc]' tag included
 $content = file_get_contents('sample.md');
 
-$Parsedown = new ParsedownToc();
+$Parsedown = new ParsedownToC();
 
 // Parses '[toc]' tag to ToC if exists
 $html = $Parsedown->text($content);
@@ -59,7 +59,7 @@ echo $body; // Main body
 
 ## Configuration
 
-- **Main Class:** `ParsedownToc(array $options = null)`
+- **Main Class:** `ParsedownToC(array $options = null)`
   - **Optional arguments:**
     - `selectors`:
       
@@ -96,16 +96,23 @@ echo $body; // Main body
       - Use PHP build-in `urlencode` this will disable all other options
       - **Type:** `boolean`
       - **Default:** `false`
+
+    - `url`:
+
+      - Prefixes anchor with the specified URL
+      - **Type:** `string`
+      - **Default:** ``
+
   - **Methods:**
     - `text(string $text)`:
       - Returns the parsed content and `[toc]` tag(s) parsed as well.
     - `body(string $text)`:
       - Returns the parsed content WITHOUT parsing `[toc]` tag.
     - `contentsList([string $type_return='html'])`:
-      - Returns the ToC, the table of contents, in HTML or JSON.
+      - Returns the ToC, the table of contents, in HTML, JSON or as an array.
       - **Optional argument:**
         - `$type_return`:
-          - `html` or `json` can be specified.
+          - `html`, `json`, or `array` can be specified.
           - **Default:** `html`
       - Alias method: `contentsList(string $type_return)`
     - `setTagToc(string $tag='[tag]')`:
