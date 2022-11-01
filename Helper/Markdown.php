@@ -67,10 +67,10 @@ class Markdown extends \Lime\Helper {
             if ($this->config['parser'] == 'extended') {
 
                 // store also toc as json in tmp folder
-                $toc = $this->parser->contentsList('json');
+                $toc = $this->parser->contentsList('array');
 
                 if ($this->config['cached_toc_format'] == 'tree') {
-                    $toc = \json_encode($this->buildTreeFromToc(\json_decode($toc, true)));
+                    $toc = \json_encode($this->buildTreeFromToc($toc));
                 }
 
                 if ($rebuild && $this->app->filestorage->has($cachepathToc)) {
