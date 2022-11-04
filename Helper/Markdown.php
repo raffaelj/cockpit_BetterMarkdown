@@ -67,15 +67,17 @@ class Markdown extends \Lime\Helper {
             if ($this->config['parser'] == 'extended') {
 
                 // store also toc as json in tmp folder
-                $toc = $this->parser->contentsList('array');
+                $_toc = $this->parser->contentsList('array');
 
                 if ($this->config['cached_toc_format'] == 'tree') {
-                    $toc = \json_encode($this->buildTreeFromToc($toc));
+                    $_toc = $this->buildTreeFromToc($_toc);
                 }
 
                 if ($rebuild && $this->app->filestorage->has($cachepathToc)) {
                     $this->app->filestorage->delete($cachepathToc);
                 }
+
+                $toc = \json_encode($_toc);
 
                 $this->app->filestorage->write($cachepathToc, $toc);
             }
@@ -157,7 +159,7 @@ class Markdown extends \Lime\Helper {
 
 }
 
-// Because of the weird extension behaviour of Parsedown, I had to copy/paste the original ParsedownCheckbox 
+// Because of the weird extension behaviour of Parsedown, I had to copy/paste the original ParsedownCheckbox
 // class with a namespace modification. So running `composer update` will not effect that class without
 // manual adjustments.
 // source: https://github.com/leblanc-simon/parsedown-checkbox
