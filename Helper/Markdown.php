@@ -33,7 +33,7 @@ class Markdown extends \Lime\Helper {
             case 'extended':
             default:
                 $this->parser = new ParsedownCheckbox();
-                $this->parser->options = \array_merge($this->parser->options, $config['toc']);
+                $this->parser->options = \array_merge($this->parser->options, $config['toc'] ?? []);
                 break;
 
         }
