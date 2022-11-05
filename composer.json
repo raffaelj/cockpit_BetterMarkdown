@@ -1,7 +1,7 @@
 {
     "name": "raffaelj/cockpit-bettermarkdown",
     "type": "cockpit-module",
-    "description": "Cache, task lists and ToC support for markdown conversion with Cockpit CMS",
+    "description": "Cache, task lists and ToC support for markdown conversion with Cockpit CMS v1",
     "keywords": ["cockpit", "Markdown", "Parsedown", "Toc"],
     "homepage": "https://github.com/raffaelj/cockpit_BetterMarkdown",
     "license": "MIT",
