@@ -19,21 +19,12 @@ Better Markdown Parser in PHP
 * Super Fast
 * Extensible
 * [GitHub flavored](https://help.github.com/articles/github-flavored-markdown)
-* Tested in 5.3 to 7.2 and in HHVM
+* Tested in 5.3 to 7.1 and in HHVM
 * [Markdown Extra extension](https://github.com/erusev/parsedown-extra)
 
 ### Installation
-#### Composer
-Install the [composer package] by running the following command:
 
-    composer require erusev/parsedown
-
-#### Manual
-1. Download the "Source code" from the [latest release]
-2. Include `Parsedown.php`
-
-[composer package]: https://packagist.org/packages/erusev/parsedown "The Parsedown package on packagist.org"
-[latest release]: https://github.com/erusev/parsedown/releases/latest "The latest release of Parsedown"
+Include `Parsedown.php` or install [the composer package](https://packagist.org/packages/erusev/parsedown).
 
 ### Example
 
@@ -41,8 +32,6 @@ Install the [composer package] by running the following command:
 $Parsedown = new Parsedown();
 
 echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
-// you can also parse inline markdown only
-echo $Parsedown->line('Hello _Parsedown_!'); # prints: Hello <em>Parsedown</em>!
 ```
 
 More examples in [the wiki](https://github.com/erusev/parsedown/wiki/) and in [this video tutorial](http://youtu.be/wYZBY8DEikI).

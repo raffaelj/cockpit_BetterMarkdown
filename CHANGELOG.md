@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+* cleaner dependency handling
+* use stable Parsedown and ParsedownExtra releases (1.7.4 + 0.8.1 instead of 1.8.0-beta-7 + 0.8.0)
+* updated ParsedownToc
+* replaced `leblanc-simon/parsedown-checkbox` with `raffaelj/parsedown-tasks`
+
 ## 0.1.1
 
 * added blacklisting of existing ids

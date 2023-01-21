@@ -1,0 +1,28 @@
+{
+    "name": "raffaelj/parsedown-tasks",
+    "description": "Tasks list (checkbox) extension for Parsedown, ParsedownExtra and ParsedownToc",
+    "keywords": ["markdown", "markdown extra", "parser", "parsedown", "checkbox", "task list"],
+    "homepage": "https://codeberg.org/raffaelj/parsedown-tasks",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raffael Jesche",
+            "homepage": "https://www.rlj.me"
+        }
+    ],
+    "require": {
+        "erusev/parsedown": "^1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-0": {"ParsedownTasks": ""}
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "ParsedownTasksTest": "tests/"
+        }
+    }
+}

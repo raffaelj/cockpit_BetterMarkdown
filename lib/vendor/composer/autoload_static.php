@@ -8,7 +8,6 @@ class ComposerStaticInitd3d752480fffe31cf7365b83c072bda1
 {
     public static $files = array (
         'e99389decfcc5142e0d0458740e7489a' => __DIR__ . '/..' . '/benjaminhoegh/parsedown-toc/ParsedownToc.php',
-        '5e187b582b2b3bb26276f0085ef51bb1' => __DIR__ . '/..' . '/leblanc-simon/parsedown-checkbox/ParsedownCheckbox.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -28,6 +27,10 @@ class ComposerStaticInitd3d752480fffe31cf7365b83c072bda1
     public static $prefixesPsr0 = array (
         'P' => 
         array (
+            'ParsedownTasks' => 
+            array (
+                0 => __DIR__ . '/..' . '/raffaelj/parsedown-tasks',
+            ),
             'ParsedownExtra' => 
             array (
                 0 => __DIR__ . '/..' . '/erusev/parsedown-extra',

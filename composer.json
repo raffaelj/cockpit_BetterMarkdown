@@ -11,22 +11,18 @@
             "homepage": "https://www.rlj.me"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/raffaelj/parsedownToc",
-            "no-api": true
-        }
-    ],
     "require": {
         "composer/installers": "^1.9",
-        "erusev/parsedown-extra": "0.8.0",
-        "erusev/parsedown": "1.8.0-beta-7",
-        "benjaminhoegh/parsedown-toc": "dev-fix-compatibility-with-1.8.0-beta-7",
-        "leblanc-simon/parsedown-checkbox": "0.2.0"
+        "erusev/parsedown-extra": "^0.8.1",
+        "erusev/parsedown": "^1.7.4",
+        "benjaminhoegh/parsedown-toc": "^1.4.3",
+        "raffaelj/parsedown-tasks": "^0.1.0"
     },
     "config": {
         "vendor-dir": "lib/vendor",
+        "preferred-install": {
+            "*": "dist"
+        },
         "allow-plugins": {
             "composer/installers": true
         }

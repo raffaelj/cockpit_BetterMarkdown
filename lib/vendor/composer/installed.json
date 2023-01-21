@@ -2,24 +2,24 @@
     "packages": [
         {
             "name": "benjaminhoegh/parsedown-toc",
-            "version": "dev-fix-compatibility-with-1.8.0-beta-7",
-            "version_normalized": "dev-fix-compatibility-with-1.8.0-beta-7",
+            "version": "1.4.3",
+            "version_normalized": "1.4.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/raffaelj/parsedownToc",
-                "reference": "7100f6f111e113b0df9612a2e0fa58b19bb0f1da"
+                "url": "https://github.com/BenjaminHoegh/ParsedownToc.git",
+                "reference": "31550a0c9151a1428b199335e31bea8344745879"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raffaelj/parsedownToc/zipball/7100f6f111e113b0df9612a2e0fa58b19bb0f1da",
-                "reference": "7100f6f111e113b0df9612a2e0fa58b19bb0f1da",
+                "url": "https://api.github.com/repos/BenjaminHoegh/ParsedownToc/zipball/31550a0c9151a1428b199335e31bea8344745879",
+                "reference": "31550a0c9151a1428b199335e31bea8344745879",
                 "shasum": ""
             },
             "require": {
                 "erusev/parsedown": "^1.7",
                 "php": ">=7.1.0"
             },
-            "time": "2022-11-01T17:49:16+00:00",
+            "time": "2023-01-18T11:20:41+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -27,13 +27,7 @@
                     "ParsedownToc.php"
                 ]
             },
-            "archive": {
-                "exclude": [
-                    "/test",
-                    "/.travis.yml",
-                    "/.nova"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -50,6 +44,20 @@
                 "extension",
                 "markdown",
                 "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/BenjaminHoegh/ParsedownToc/issues",
+                "source": "https://github.com/BenjaminHoegh/ParsedownToc/tree/1.4.3"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/BenjaminHoegh",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/BenjaminHoegh",
+                    "type": "custom"
+                }
             ],
             "install-path": "../benjaminhoegh/parsedown-toc"
         },
@@ -209,17 +217,17 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.8.0-beta-7",
-            "version_normalized": "1.8.0.0-beta7",
+            "version": "1.7.4",
+            "version_normalized": "1.7.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "fe7a50eceb4a3c867cc9fa9c0aa906b1067d1955"
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/fe7a50eceb4a3c867cc9fa9c0aa906b1067d1955",
-                "reference": "fe7a50eceb4a3c867cc9fa9c0aa906b1067d1955",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
                 "shasum": ""
             },
             "require": {
@@ -229,7 +237,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35"
             },
-            "time": "2019-03-17T18:47:21+00:00",
+            "time": "2019-12-30T22:54:17+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -254,33 +262,34 @@
                 "markdown",
                 "parser"
             ],
+            "support": {
+                "issues": "https://github.com/erusev/parsedown/issues",
+                "source": "https://github.com/erusev/parsedown/tree/1.7.x"
+            },
             "install-path": "../erusev/parsedown"
         },
         {
             "name": "erusev/parsedown-extra",
-            "version": "0.8.0",
-            "version_normalized": "0.8.0.0",
+            "version": "0.8.1",
+            "version_normalized": "0.8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown-extra.git",
-                "reference": "32f6e957286bf9ff98d07ca924a18299461acc8f"
+                "reference": "91ac3ff98f0cea243bdccc688df43810f044dcef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown-extra/zipball/32f6e957286bf9ff98d07ca924a18299461acc8f",
-                "reference": "32f6e957286bf9ff98d07ca924a18299461acc8f",
+                "url": "https://api.github.com/repos/erusev/parsedown-extra/zipball/91ac3ff98f0cea243bdccc688df43810f044dcef",
+                "reference": "91ac3ff98f0cea243bdccc688df43810f044dcef",
                 "shasum": ""
             },
             "require": {
-                "erusev/parsedown": "^1.8.0|^1.8.0-beta-4",
-                "ext-dom": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.3.6"
+                "erusev/parsedown": "^1.7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35"
             },
-            "time": "2019-12-29T11:14:16+00:00",
+            "time": "2019-12-30T23:20:37+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -309,39 +318,32 @@
             ],
             "support": {
                 "issues": "https://github.com/erusev/parsedown-extra/issues",
-                "source": "https://github.com/erusev/parsedown-extra/tree/0.8.0"
+                "source": "https://github.com/erusev/parsedown-extra/tree/0.8.x"
             },
             "install-path": "../erusev/parsedown-extra"
         },
         {
-            "name": "leblanc-simon/parsedown-checkbox",
-            "version": "0.2.0",
-            "version_normalized": "0.2.0.0",
+            "name": "raffaelj/parsedown-tasks",
+            "version": "0.1.0",
+            "version_normalized": "0.1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/leblanc-simon/parsedown-checkbox.git",
-                "reference": "686d7e2a562346a6fd2a3c97aff19c1c2ccfffc9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/leblanc-simon/parsedown-checkbox/zipball/686d7e2a562346a6fd2a3c97aff19c1c2ccfffc9",
-                "reference": "686d7e2a562346a6fd2a3c97aff19c1c2ccfffc9",
-                "shasum": ""
+                "url": "https://codeberg.org/raffaelj/parsedown-tasks",
+                "reference": "9b317fc0f7ab93156f2dec3d268367a114913cb7"
             },
             "require": {
-                "erusev/parsedown": "^1.8.0-beta",
-                "erusev/parsedown-extra": "^0.8.0-beta-1"
+                "erusev/parsedown": "^1.7"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5"
+                "phpunit/phpunit": "^9"
             },
-            "time": "2019-05-30T10:47:03+00:00",
+            "time": "2023-01-21T14:18:06+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
-                "files": [
-                    "ParsedownCheckbox.php"
-                ]
+                "psr-0": {
+                    "ParsedownTasks": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -349,23 +351,23 @@
             ],
             "authors": [
                 {
-                    "name": "Simon Leblanc",
-                    "email": "contact@leblanc-simon.eu",
-                    "homepage": "https://www.leblanc-simon.fr"
+                    "name": "Raffael Jesche",
+                    "homepage": "https://www.rlj.me"
                 }
             ],
-            "description": "An extension of Parsedown and ParsedownExtra that adds support for checkbox",
-            "homepage": "https://github.com/leblanc-simon/parsedown-checkbox",
+            "description": "Tasks list (checkbox) extension for Parsedown, ParsedownExtra and ParsedownToc",
+            "homepage": "https://codeberg.org/raffaelj/parsedown-tasks",
             "keywords": [
                 "checkbox",
                 "markdown",
                 "markdown extra",
                 "parsedown",
-                "parser"
+                "parser",
+                "task list"
             ],
-            "install-path": "../leblanc-simon/parsedown-checkbox"
+            "install-path": "../raffaelj/parsedown-tasks"
         }
     ],
-    "dev": false,
+    "dev": true,
     "dev-package-names": []
 }

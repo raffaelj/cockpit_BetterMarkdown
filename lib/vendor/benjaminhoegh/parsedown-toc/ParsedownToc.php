@@ -85,18 +85,9 @@ class ParsedownToC extends DynamicParent
         $Block = DynamicParent::blockHeader($Line);
 
         if (!empty($Block)) {
-
-            $text = '';
-
             // Get the text of the heading
-
-            // 1.7.4
             if (isset($Block['element']['text'])) {
                 $text = $Block['element']['text'];
-            }
-            // 1.8.0-beta-7
-            elseif (isset($Block['element']['handler']['argument'])) {
-                $text = $Block['element']['handler']['argument'];
             }
 
             // Get the heading level. Levels are h1, h2, ..., h6
@@ -139,18 +130,9 @@ class ParsedownToC extends DynamicParent
         $Block = DynamicParent::blockSetextHeader($Line, $Block);
 
         if (!empty($Block)) {
-
-            $text = '';
-
             // Get the text of the heading
-
-            // 1.7.4
             if (isset($Block['element']['text'])) {
                 $text = $Block['element']['text'];
-            }
-            // 1.8.0-beta-7
-            elseif (isset($Block['element']['handler']['argument'])) {
-                $text = $Block['element']['handler']['argument'];
             }
 
             // Get the heading level. Levels are h1, h2, ..., h6
@@ -484,7 +466,7 @@ class ParsedownToC extends DynamicParent
         $text  = $this->fetchText($Content['text']);
         $id    = $Content['id'];
         $level = (integer) trim($Content['level'], 'h');
-        $link  = "[${text}]({$this->options['url']}#${id})";
+        $link  = "[{$text}]({$this->options['url']}#{$id})";
 
         if ($this->firstHeadLevel === 0) {
             $this->firstHeadLevel = $level;
@@ -504,7 +486,7 @@ class ParsedownToC extends DynamicParent
         //     - [Header3](#Header3)
         //   - [Header2-2](#Header2-2)
         // ...
-        $this->contentsListString .= "${indent}- ${link}" . PHP_EOL;
+        $this->contentsListString .= "{$indent}- {$link}" . PHP_EOL;
     }
     protected $contentsListString = '';
     protected $firstHeadLevel = 0;
@@ -555,7 +537,7 @@ class ParsedownToC extends DynamicParent
         $toc_data = $this->contentsList();
         $toc_id   = $this->getIdAttributeToC();
         $needle  = '<p>' . $tag_origin . '</p>';
-        $replace = "<div id=\"${toc_id}\">${toc_data}</div>";
+        $replace = "<div id=\"{$toc_id}\">{$toc_data}</div>";
 
         return str_replace($needle, $replace, $html);
     }

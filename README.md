@@ -1,4 +1,4 @@
-# BetterMarkdown addon for Cockpit CMS
+# BetterMarkdown addon for Cockpit CMS v1
 
 **This addon is not compatible with Cockpit CMS v2.**
 
@@ -8,7 +8,7 @@ See also [Cockpit CMS v1 docs](https://v1.getcockpit.com/documentation), [Cockpi
 
 Cache, task lists and ToC support for markdown conversion with [Cockpit CMS][1]
 
-This addon replaces the current [Parsedown][2] and [ParsedownExtra][3] libraries with later versions and it adds two Parsedown extensions: [ParsedownToC][4] and [ParsedownCheckbox][5].
+This addon replaces the current [Parsedown][2] and [ParsedownExtra][3] libraries with later versions and it adds two Parsedown extensions: [ParsedownToC][4] and [ParsedownTasks][5].
 
 It also uses a cache of already converted content to speed things up. Cached files are in the `tmp` folder.
 
@@ -92,6 +92,12 @@ return [
             ],
             'unset_keys' => ['level', 'id'],
         ],
+
+        // add classes to task lists
+        'tasks' => [
+            'classUnchecked' => 'parsedown-task-list parsedown-task-list-open',
+            'classChecked'   => 'parsedown-task-list parsedown-task-list-close',
+        ],
     ],
 ];
 ```
@@ -133,8 +139,12 @@ html output:
 <p>do something</p>
 <h2 id="to-do">To do</h2>
 <ul>
-<li class="parsedown-task-list parsedown-task-list-close"><input type="checkbox" checked disabled /> test</li>
-<li class="parsedown-task-list parsedown-task-list-open"><input type="checkbox" disabled /> deploy</li>
+<li class="parsedown-task-list parsedown-task-list-close">
+<input type="checkbox" checked disabled /> test
+</li>
+<li class="parsedown-task-list parsedown-task-list-open">
+<input type="checkbox" disabled /> deploy
+</li>
 </ul>
 ```
 
@@ -159,22 +169,19 @@ if ($app->filestorage->has($cachepath)) {
 print_r($toc);
 ```
 
-
 ## License, credits and third party resources
 
 License: MIT, author: Raffael Jesche, www.rlj.me
 
 Used libraries:
 
-* "erusev/parsedown-extra": "0.8.0", MIT
-* "erusev/parsedown": "^1.8.0-beta-7", MIT
-* "benjaminhoegh/parsedown-toc": "^1.4.2", MIT
-* "leblanc-simon/parsedown-checkbox": "^0.2.0", MIT
-
-
+* "erusev/parsedown-extra": "0.8.1", MIT
+* "erusev/parsedown": "^1.7.4", MIT
+* "benjaminhoegh/parsedown-toc": "^1.4.3", MIT
+* "raffaelj/parsedown-tasks": "^0.1.0", MIT
 
 [1]: https://github.com/agentejo/cockpit
 [2]: https://github.com/erusev/parsedown
 [3]: https://github.com/erusev/parsedown-extra
 [4]: https://github.com/BenjaminHoegh/parsedownToc
-[5]: https://github.com/leblanc-simon/parsedown-checkbox
+[5]: https://codeberg.org/raffaelj/parsedown-tasks

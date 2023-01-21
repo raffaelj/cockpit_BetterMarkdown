@@ -7,5 +7,4 @@ $baseDir = dirname(dirname($vendorDir));
 
 return array(
     'e99389decfcc5142e0d0458740e7489a' => $vendorDir . '/benjaminhoegh/parsedown-toc/ParsedownToc.php',
-    '5e187b582b2b3bb26276f0085ef51bb1' => $vendorDir . '/leblanc-simon/parsedown-checkbox/ParsedownCheckbox.php',
 );
